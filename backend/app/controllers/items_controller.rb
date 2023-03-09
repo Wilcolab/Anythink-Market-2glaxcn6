@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 require_relative "../../lib/event"
+require 'net/http'
+require 'uri'
+require_relative "../../lib/openai.rb"
 include Event
 
 class ItemsController < ApplicationController
@@ -53,6 +56,17 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     @item.user = current_user
+
+    if @item.image.blank?
+      image_url = OpenAI.generate_image(
+        @item.title
+        # size: "256x256"
+      )
+
+      # Save the image URL to your item
+      @item.image = image_url.dig("data", 0, "url")
+      @item.save
+    end
 
     if @item.save
       sendEvent("item_created", { item: item_params })
