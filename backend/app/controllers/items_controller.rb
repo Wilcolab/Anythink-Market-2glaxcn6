@@ -2,7 +2,6 @@
 require_relative "../../lib/event"
 require_relative "../../lib/openai.rb"
 require 'net/http'
-require 'uri'
 include Event
 
 class ItemsController < ApplicationController
