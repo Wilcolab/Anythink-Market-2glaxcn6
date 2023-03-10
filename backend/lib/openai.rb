@@ -16,8 +16,6 @@ module OpenAI
     response = HTTParty.post('https://api.openai.com/v1/images/generations', headers: headers, body: body.to_json)
     if response.code == 200
       image_url = response.parsed_response["data"][0]["url"]
-      # save the image url to a file
-      #File.write("image_url.txt", image_url)
       # return the image url
       image_url
     else
