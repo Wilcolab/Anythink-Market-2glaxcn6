@@ -60,12 +60,11 @@ class App extends React.Component {
             <Route exact path="/" component={Home} />
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
-            <Route path="/editor/:slug" component={Editor} />
-            <Route path="/editor" component={Editor} />
+            <PrivateRoute path="/editor" component={Editor} isAuthenticated={this.props.currentUser} />
             <Route path="/item/:id" component={Item} />
-            <Route path="/settings" component={Settings} />
-            <Route path="/@:username/favorites" component={ProfileFavorites} />
-            <Route path="/@:username" component={Profile} />
+            <PrivateRoute path="/settings" component={Settings} isAuthenticated={this.props.currentUser} />
+            <PrivateRoute path="/@:username/favorites" component={ProfileFavorites} />
+            <PrivateRoute path="/@:username" component={Profile} />
           </Switch>
         </div>
       );
