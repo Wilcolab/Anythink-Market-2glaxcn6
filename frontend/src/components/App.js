@@ -63,7 +63,7 @@ class App extends React.Component {
             <Route path="/register" component={Register} />
             <PrivateRoute path="/editor" component={Editor} isAuthenticated={this.props.currentUser} />
             <Route path="/item/:id" component={Item} />
-            <Route path="/settings" component={Settings} />
+            <PrivateRoute path="/settings" component={Settings} isAuthenticated={this.props.currentUser} />
             <Route path="/@:username/favorites" component={ProfileFavorites} />
             <Route path="/@:username" component={Profile} />
           </Switch>
