@@ -10,6 +10,7 @@ import Home from "./Home";
 import Login from "./Login";
 import Profile from "./Profile";
 import ProfileFavorites from "./ProfileFavorites";
+import PrivateRoute from "./PrivateRoute";
 import Register from "./Register";
 import Settings from "./Settings";
 import { store } from "../store";
@@ -62,9 +63,9 @@ class App extends React.Component {
             <Route path="/register" component={Register} />
             <PrivateRoute path="/editor" component={Editor} isAuthenticated={this.props.currentUser} />
             <Route path="/item/:id" component={Item} />
-            <PrivateRoute path="/settings" component={Settings} isAuthenticated={this.props.currentUser} />
-            <PrivateRoute path="/@:username/favorites" component={ProfileFavorites} />
-            <PrivateRoute path="/@:username" component={Profile} />
+            <Route path="/settings" component={Settings} />
+            <Route path="/@:username/favorites" component={ProfileFavorites} />
+            <Route path="/@:username" component={Profile} />
           </Switch>
         </div>
       );
