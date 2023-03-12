@@ -1,5 +1,6 @@
 import agent from "../agent";
 import Header from "./Header";
+import PrivateRoute from "./PrivateRoute";
 import React from "react";
 import { connect } from "react-redux";
 import { APP_LOAD, REDIRECT } from "../constants/actionTypes";
@@ -10,7 +11,6 @@ import Home from "./Home";
 import Login from "./Login";
 import Profile from "./Profile";
 import ProfileFavorites from "./ProfileFavorites";
-import PrivateRoute from "./PrivateRoute";
 import Register from "./Register";
 import Settings from "./Settings";
 import { store } from "../store";
