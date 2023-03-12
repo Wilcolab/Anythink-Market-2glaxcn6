@@ -1,5 +1,5 @@
 # lib/openai.rb
-# require 'httparty'
+require 'httparty'
 
 module OpenAI
   def self.generate_image_url(prompt, size="256x256")
