@@ -1,6 +1,5 @@
 import agent from "../agent";
 import Header from "./Header";
-import PrivateRoute from "./PrivateRoute";
 import React from "react";
 import { connect } from "react-redux";
 import { APP_LOAD, REDIRECT } from "../constants/actionTypes";
@@ -32,9 +31,10 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 class App extends React.Component {
-  componentDidUpdate(prevProps) {
-    if (this.props.redirectTo && this.props.redirectTo !== prevProps.redirectTo) {
-      store.dispatch(push(this.props.redirectTo));
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.redirectTo) {
+      // this.context.router.replace(nextProps.redirectTo);
+      store.dispatch(push(nextProps.redirectTo));
       this.props.onRedirect();
     }
   }
@@ -60,9 +60,10 @@ class App extends React.Component {
             <Route exact path="/" component={Home} />
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
-            <PrivateRoute path="/editor" component={Editor} currentUser={this.props.currentUser} />
+            <Route path="/editor/:slug" component={Editor} />
+            <Route path="/editor" component={Editor} />
             <Route path="/item/:id" component={Item} />
-            <PrivateRoute path="/settings" component={Settings} currentUser={this.props.currentUser} />
+            <Route path="/settings" component={Settings} />
             <Route path="/@:username/favorites" component={ProfileFavorites} />
             <Route path="/@:username" component={Profile} />
           </Switch>

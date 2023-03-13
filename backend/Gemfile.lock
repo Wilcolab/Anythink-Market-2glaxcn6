@@ -115,9 +115,6 @@ GEM
     ffi (1.15.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
-    httparty (0.21.0)
-      mini_mime (>= 1.0.0)
-      multi_xml (>= 0.5.2)
     i18n (1.8.11)
       concurrent-ruby (~> 1.0)
     io-like (0.3.1)
@@ -139,7 +136,6 @@ GEM
     mini_portile2 (2.6.1)
     minitest (5.15.0)
     msgpack (1.4.2)
-    multi_xml (0.6.0)
     nio4r (2.5.8)
     nokogiri (1.12.5)
       mini_portile2 (~> 2.6.1)
@@ -240,7 +236,6 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   faraday
-  httparty
   jbuilder (~> 2.5)
   jwt
   listen (>= 3.0.5, < 3.2)

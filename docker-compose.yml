@@ -11,7 +11,6 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - OPENAI_API_KEY=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
       - RAILS_ENV=development
       - PORT=3000
       - DATABASE_URL=postgres://user:@postgres-rails:5432
