@@ -1,6 +1,6 @@
 const { createCanvas } = require('canvas') 
 
-function getUserAvatar(user) {
+function getUserAvatar(userName) {
     const canvas = createCanvas(200,200);
     const ctx = canvas.getContext("2d");
     
@@ -11,9 +11,9 @@ function getUserAvatar(user) {
     ctx.font = '100px Bradley Hand';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText(user.username.substring(0,2).toUpperCase(), canvas.width/2, canvas.height/2);
+    ctx.fillText(userName.substring(0,2).toUpperCase(), canvas.width/2, canvas.height/2);
 
-    return canvas.toDataURL('image/png');
+    return canvas.toDataURL();
 }
 
-export default getUserAvatar;
+module.exports = getUserAvatar;
