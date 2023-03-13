@@ -16,4 +16,4 @@ function getUserAvatar(user) {
     return canvas.toDataURL('image/png');
 }
 
-module.exports = getUserAvatar;
+export default getUserAvatar;
