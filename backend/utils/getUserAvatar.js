@@ -8,7 +8,7 @@ function getUserAvatar(user) {
     ctx.fillRect(0,0, canvas.width, canvas.height);
 
     ctx.fillStyle = '#fff';
-    ctx.font = '100px Bradley Hand';
+    ctx.font = 'bold 100px Arial';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillText(user.username.substring(0,2).toUpperCase(), canvas.width/2, canvas.height/2);
