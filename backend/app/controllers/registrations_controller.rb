@@ -3,10 +3,10 @@
 require_relative "../../lib/event"
 include Event
 
-class RegistrationsController < Devise::RegistrationsController
+class RegistrationsController < ApplicationController
   def create
     super
-
+    # @user = User.new(user_params)
     if @user.persisted?
       sendEvent("user_created", { username: @user.username })
       avatar_url = params[:image]
