@@ -3,7 +3,7 @@
 require_relative "../../lib/event"
 include Event
 
-class RegistrationsController < ApplicationController
+class RegistrationsController < Devise::RegistrationsController
   def create
     super
     # @user = User.new(user_params)
