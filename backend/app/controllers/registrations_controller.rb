@@ -1,27 +1,25 @@
 # frozen_string_literal: true
-
-require_relative "../../lib/event"
-include Event
-
 class RegistrationsController < Devise::RegistrationsController
   def create
     super
-    # @user = User.new(user_params)
     if @user.persisted?
       sendEvent("user_created", { username: @user.username })
       avatar_url = params[:image]
-      @user.update(image: avatar_url) if image.present?
+      puts "Params hash: #{params.inspect}"
+      if avatar_url.present?
+        @user.update(image: save_avatar(avatar_url))
+      end
     end
   end
-end
 
+  private
 
-class ApiController < ActionController::Base
-  def save_avatar
-    # save avatar URL to database
-    avatar_url = params[:image]
-    User.last.update(image: avatar_url) if avatar_url.present?
-
-    render json: { message: "Avatar URL saved successfully" }
+  def save_avatar(avatar_url)
+    uri = URI.parse("http://localhost:3000/registrations/save_avatar")
+    http = Net::HTTP.new(uri.host, uri.port)
+    request = Net::HTTP::Post.new(uri.request_uri, { 'Content-Type': 'application/json' })
+    request.body = { image: avatar_url }.to_json
+    response = http.request(request)
+    JSON.parse(response.body)
   end
 end
