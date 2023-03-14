@@ -1,6 +1,6 @@
 const { createCanvas } = require('canvas') 
 
-function getUserAvatar(userName) {
+function getUserAvatar(user) {
     const canvas = createCanvas(200,200);
     const ctx = canvas.getContext("2d");
     
@@ -11,7 +11,7 @@ function getUserAvatar(userName) {
     ctx.font = '100px Bradley Hand';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText(userName.substring(0,2).toUpperCase(), canvas.width/2, canvas.height/2);
+    ctx.fillText(user.username.substring(0,2).toUpperCase(), canvas.width/2, canvas.height/2);
 
     return canvas.toDataURL();
 }
