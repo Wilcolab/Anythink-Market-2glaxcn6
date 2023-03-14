@@ -3,9 +3,14 @@ Rails.application.routes.draw do
 
   get '/health', to: 'application#health'
 
-  post "/api/save-avatar", to: "api#save_avatar"
+  devise_for :users, controllers: { registrations: 'registrations' }
 
   scope :api, defaults: { format: :json } do
+    devise_scope :user do
+      post '/users/', to: 'registrations#create'
+      post '/users/login', to: 'registrations#create'
+    end
+
     resource :user, only: %i[show update]
 
     resources :profiles, param: :username, only: [:show] do
