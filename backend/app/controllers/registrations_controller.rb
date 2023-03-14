@@ -1,4 +1,7 @@
 # frozen_string_literal: true
+require_relative "../../lib/event"
+include Event
+
 class RegistrationsController < Devise::RegistrationsController
   def create
     super
