@@ -4,13 +4,9 @@ Rails.application.routes.draw do
   get '/health', to: 'application#health'
 
 
-  devise_for :users, controllers: { registrations: 'registrations' }
-
   scope :api, defaults: { format: :json } do
-    devise_scope :user do
-      get '/users/', to: 'profiles#show'
-      
-    end
+    devise_for :users, controllers: { sessions: :sessions, registrations: :registrations },
+                       path_names: { sign_in: :login }
    
     resource :user, only: %i[show update]
 
