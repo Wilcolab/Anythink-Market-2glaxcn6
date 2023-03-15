@@ -3,14 +3,15 @@ Rails.application.routes.draw do
 
   get '/health', to: 'application#health'
 
+
   devise_for :users, controllers: { registrations: 'registrations' }
 
   scope :api, defaults: { format: :json } do
     devise_scope :user do
-      post '/users/', to: 'registrations#create'
-      post '/users/login', to: 'registrations#create'
+      get '/users/', to: 'profiles#show'
+      
     end
-
+   
     resource :user, only: %i[show update]
 
     resources :profiles, param: :username, only: [:show] do
