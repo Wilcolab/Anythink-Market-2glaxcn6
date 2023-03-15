@@ -4,9 +4,9 @@ const user = { username: 'example' };
 const avatarUrl = getUserAvatar(user);
 
 const requestOptions = {
-  method: 'POST',
+  method: 'PUT',
   headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ image: avatarUrl })
+  body: JSON.stringify({ user: { image: avatarUrl, ...user } })
 };
 
 fetch('/users', requestOptions)
