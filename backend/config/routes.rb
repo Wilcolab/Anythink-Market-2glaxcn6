@@ -8,7 +8,10 @@ Rails.application.routes.draw do
     devise_for :users, controllers: { sessions: :sessions, registrations: :registrations },
                        path_names: { sign_in: :login }
    
-    resource :user, only: %i[show update]
+    resource :user, only: %i[show update] do
+      put 'image', to: 'users#update'
+    end
+
 
     resources :profiles, param: :username, only: [:show] do
       resource :follow, only: %i[create destroy]
