@@ -12,10 +12,10 @@ class UsersController < ApplicationController
       render json: { errors: current_user.errors }, status: :unprocessable_entity
     end
   end
-
+  
   private
-
+  
   def user_params
     params.require(:user).permit(:username, :email, :password, :bio, :image)
   end
-end
+end  
