@@ -1,3 +1,3 @@
 #!/bin/sh
 
-bin/rails db:seed
+docker exec -it anythink-backend-rails bash -c "backend/bin/rails db:seed"
