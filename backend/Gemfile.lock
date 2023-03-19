@@ -112,6 +112,8 @@ GEM
       railties (>= 3.2)
     erubi (1.10.0)
     execjs (2.7.0)
+    faker (3.1.1)
+      i18n (>= 1.8.11, < 2)
     faraday (2.1.0)
       faraday-net_http (~> 2.0)
       ruby2_keywords (>= 0.0.4)
@@ -244,6 +246,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   dotenv-rails
+  faker
   faraday
   httparty
   jbuilder (~> 2.5)
