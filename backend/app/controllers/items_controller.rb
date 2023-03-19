@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 require_relative "../../lib/event"
-require_relative "../../lib/openai.rb"
 include Event
 
 class ItemsController < ApplicationController
@@ -54,13 +53,6 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     @item.user = current_user
-
-    if @item.image.blank?
-      response = OpenAI.generate_image_url(
-          @item.title
-      )
-      @item.image = response
-    end
 
     if @item.save
       sendEvent("item_created", { item: item_params })

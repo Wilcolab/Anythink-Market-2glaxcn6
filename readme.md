@@ -19,6 +19,3 @@ When implementing a new feature or fixing a bug, please create a new pull reques
 
 ## Tests
 Documentation about running the End to End test can be found under the `/tests` directory
-
-
-First of all, to do this quest you must build a generator for users, items, and comments in seeds.rb. Look at what attributes each table has after creating an item on the website. Then run `docker exec -it anythink-backend-rails bash` in the terminal. Then cd into the backend folder. Then finally run `./seeds.sh` to fill the database with seed data.
