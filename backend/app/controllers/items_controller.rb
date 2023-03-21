@@ -16,6 +16,7 @@ class ItemsController < ApplicationController
 
     @items = @items.order(created_at: :desc).offset(params[:offset] || 0).limit(params[:limit] || 100)
 
+
     render json: {
       items: @items.map { |item|
         {
