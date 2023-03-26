@@ -27,6 +27,7 @@ body {
   background-position: top;
   background-repeat: no-repeat;
 }
+
 .page {
   margin-top: 2 * $spacer;
   margin-bottom: 2 * $spacer;
@@ -46,6 +47,31 @@ body {
 .item-img {
   height: 150px;
   object-fit: cover;
+}
+
+.search-container {
+  position: relative;
+  display: inline-block;
+  width: 400px;
+  border-radius: 7px;
+  overflow: hidden;
+  margin: 0 10px;
+
+  input {
+    line-height: 2;
+    width: 100%;
+    height: 100%;
+    padding: 0.75rem 0.5rem;
+  }
+}
+
+.ion-search {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(-10px, -50%);
+
+  color: $primary;
 }
 
 .crop-text-3 {
