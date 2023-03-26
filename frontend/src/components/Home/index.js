@@ -45,10 +45,7 @@ const Home = ({
     return onUnload;
   }, [onLoad, onUnload]);
 
-  const handleTitleSearch = (e) => {
-    e.preventDefault();
-    onTitleSearch(e.target.elements.searchBox.value);
-  };
+  
 
   return (
     <div className="home-page">
@@ -63,21 +60,7 @@ const Home = ({
               <p>Popular Tags</p>
               <Tags tags={tags} tagFilter={tagFilter} onClickTag={onClickTag} />
               <hr />
-              <div className="search">
-                <p>Search Articles</p>
-                <form onSubmit={handleTitleSearch}>
-                  <input
-                    type="text"
-                    name="searchBox"
-                    id="search-box"
-                    className="form-control"
-                    placeholder="Search articles"
-                  />
-                  <button className="btn btn-outline-secondary mt-3">
-                    Search
-                  </button>
-                </form>
-              </div>
+        
             </div>
           </div>
         </div>
