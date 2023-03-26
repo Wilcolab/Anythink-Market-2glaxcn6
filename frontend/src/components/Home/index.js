@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
 import Banner from "./Banner";
-import ItemList from "./../ItemList";
+import MainView from "./MainView";
+import React, { useEffect } from "react";
 import Tags from "./Tags";
 import agent from "../../agent";
+import { connect } from "react-redux";
 import {
   HOME_PAGE_LOADED,
   HOME_PAGE_UNLOADED,
@@ -26,47 +26,29 @@ const mapDispatchToProps = (dispatch) => ({
   onUnload: () => dispatch({ type: HOME_PAGE_UNLOADED }),
 });
 
-const Home = ({
-  onLoad,
-  onUnload,
-  tags,
-  onClickTag,
-  items,
-  tagFilter,
-  onTitleSearch,
-}) => {
+const Home = ({ onLoad, onUnload, tags, onClickTag }) => {
+  const tab = "all";
+  const itemsPromise = agent.Items.all;
+
   useEffect(() => {
-    const itemsPromise = agent.Items.all({ title: "" });
     onLoad(
-      "all",
+      tab,
       itemsPromise,
-      Promise.all([agent.Tags.getAll(), itemsPromise])
+      Promise.all([agent.Tags.getAll(), itemsPromise()])
     );
     return onUnload;
-  }, [onLoad, onUnload]);
-
-  
+  }, [onLoad, onUnload, tab, itemsPromise]);
 
   return (
     <div className="home-page">
       <Banner />
+
       <div className="container page">
-        <div className="row">
-          <div className="col-md-9">
-            <ItemList items={items} />
-          </div>
-          <div className="col-md-3">
-            <div className="sidebar">
-              <p>Popular Tags</p>
-              <Tags tags={tags} tagFilter={tagFilter} onClickTag={onClickTag} />
-              <hr />
-        
-            </div>
-          </div>
-        </div>
+        <Tags tags={tags} onClickTag={onClickTag} />
+        <MainView />
       </div>
     </div>
   );
-};
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
