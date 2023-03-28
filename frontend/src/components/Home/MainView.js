@@ -70,29 +70,10 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const MainView = (props) => {
+
   return (
     <div>
-      {/* {props.itemsCount === 0 && (
-        <div className="no-result-container">
-          <i className="ion-sad"></i>
-          <p id="empty">
-            No items found for "<span>{props.searchValue}</span>"
-          </p>
-        </div>
-      )} */}
-      <div
-        className="no-result-container"
-        id="empty"
-        style={{
-          display:
-            props.itemsCount === 0 && props.searchValue ? "block" : "none",
-        }}>
-        <i className="ion-sad"></i>
-        <p>
-          No items found for "<span>{props.searchValue}</span>"
-        </p>
-      </div>
-      {props.itemsCount > 0 && (
+      {!props.isItemsEmpty && (
         <div>
           <div className="feed-toggle">
             <ul className="nav nav-tabs">
@@ -115,6 +96,12 @@ const MainView = (props) => {
             itemsCount={props.itemsCount}
             currentPage={props.currentPage}
           />
+        </div>
+      )}
+      {props.isItemsEmpty && props.searchValue && (
+        <div className="no-result-container" id="empty" style={{ display: true }}>
+          <i className="ion-sad"></i>
+          <p>No items found for "<span>{props.searchValue}</span>"</p>
         </div>
       )}
     </div>
