@@ -11,12 +11,10 @@ class ItemsController < ApplicationController
     @items = @items.tagged_with(params[:tag]) if params[:tag].present?
     @items = @items.sellered_by(params[:seller]) if params[:seller].present?
     @items = @items.favorited_by(params[:favorited]) if params[:favorited].present?
-    @items = @items.title_search(params[:title]) if params[:title].present? # new line to filter by title
 
     @items_count = @items.count
 
     @items = @items.order(created_at: :desc).offset(params[:offset] || 0).limit(params[:limit] || 100)
-
 
     render json: {
       items: @items.map { |item|

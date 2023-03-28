@@ -6,7 +6,6 @@ import {
   HOME_PAGE_LOADED,
   HOME_PAGE_UNLOADED,
   CHANGE_TAB,
-  SEARCH_TITLE,
   PROFILE_PAGE_LOADED,
   PROFILE_PAGE_UNLOADED,
   PROFILE_FAVORITES_PAGE_LOADED,
@@ -46,7 +45,6 @@ const reducer = (state = {}, action) => {
         tab: null,
         tag: action.tag,
         currentPage: 0,
-        isItemsEmpty: action.payload.items.length === 0, // new property
       };
     case HOME_PAGE_LOADED:
       return {
@@ -60,18 +58,6 @@ const reducer = (state = {}, action) => {
       };
     case HOME_PAGE_UNLOADED:
       return {};
-    case SEARCH_TITLE:
-      return {
-        ...state,
-        pager: action.pager,
-        searchValue: action.searchValue,
-        items: action.payload.items,
-        itemsCount: action.payload.itemsCount,
-        tab: action.tab,
-        currentPage: 0,
-        tag: null,
-        isItemsEmpty: action.payload.items.length === 0, // new property
-      };
     case CHANGE_TAB:
       return {
         ...state,
@@ -81,7 +67,6 @@ const reducer = (state = {}, action) => {
         tab: action.tab,
         currentPage: 0,
         tag: null,
-        isItemsEmpty: action.payload.items.length === 0, // new property
       };
     case PROFILE_PAGE_LOADED:
     case PROFILE_FAVORITES_PAGE_LOADED:
@@ -91,7 +76,6 @@ const reducer = (state = {}, action) => {
         items: action.payload?.[1]?.items,
         itemsCount: action.payload?.[1]?.itemsCount,
         currentPage: 0,
-        isItemsEmpty: action.payload?.[1]?.items?.length === 0, // new property
       };
     case PROFILE_PAGE_UNLOADED:
     case PROFILE_FAVORITES_PAGE_UNLOADED:
