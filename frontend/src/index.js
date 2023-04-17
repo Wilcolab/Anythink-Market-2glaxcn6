@@ -2,7 +2,7 @@ import "./custom.scss";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import React from "react";
-import { ThemeProvider } from "styled-components"
+import { GlobalStyle, ThemeProvider } from "styled-components"
 import { store } from "./store";
 import theme from "./styles/theme"
 
@@ -13,6 +13,7 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter basename="/">
       <ThemeProvider theme={theme}>
+        <GlobalStyle background-color />
         <App />
       </ThemeProvider>
     </BrowserRouter>
