@@ -1,6 +1,6 @@
 {
   "workbench.startupEditor": "none",
-  // "githubPullRequests.ignoredPullRequestBranches": [
-  //   "main"
-  // ]
+  "githubPullRequests.ignoredPullRequestBranches": [
+    "main"
+  ]
 }
