@@ -18,7 +18,5 @@ class Item < ApplicationRecord
     self.slug ||= "#{title.to_s.parameterize}-#{rand(36**6).to_s(36)}"
   end
 
-  def as_json(options = {})
-    super(options.merge({:methods => [:is_verified]}))
-  end
+
 end
