@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import agent from "../agent";
 import { connect } from "react-redux";
 import { ITEM_FAVORITED, ITEM_UNFAVORITED } from "../constants/actionTypes";
+import verifiedIcon from '../imgs/verified_seller.svg';
 
 const mapDispatchToProps = (dispatch) => ({
   favorite: (slug) =>
@@ -48,6 +49,8 @@ const ItemPreview = (props) => {
         </Link>
         <div className="d-flex flex-row align-items-center pt-2 item-footer">
           <Link to={`/@${item.seller.username}`} className="flex-grow-1">
+            <img src={verifiedIcon} alt="Verified Seller" />
+            <span className="top-seller">TOP SELLER </span>
             <img
               src={item.seller.image}
               alt={item.seller.username}
