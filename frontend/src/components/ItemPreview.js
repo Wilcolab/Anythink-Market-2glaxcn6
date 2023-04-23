@@ -30,6 +30,14 @@ const ItemPreview = (props) => {
     }
   };
 
+  const verifiedSellerIcon = item.seller.isVerified ? (
+    <img src={verifiedIcon} alt="Verified Seller" className="verified-seller-icon" />
+  ) : null;
+
+  const verifiedSellerText = item.seller.isVerified ? (
+    <span className="top-seller">TOP SELLER</span>
+  ) : null;
+
   return (
     <div
       className="card bg-dark border-light p-3"
@@ -49,8 +57,8 @@ const ItemPreview = (props) => {
         </Link>
         <div className="d-flex flex-row align-items-center pt-2 item-footer">
           <Link to={`/@${item.seller.username}`} className="flex-grow-1">
-            <img src={verifiedIcon} alt="Verified Seller" />
-            <span className="top-seller">TOP SELLER </span>
+            {verifiedSellerIcon}
+            {verifiedSellerText}
             <img
               src={item.seller.image}
               alt={item.seller.username}
