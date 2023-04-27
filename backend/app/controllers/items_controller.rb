@@ -56,7 +56,14 @@ class ItemsController < ApplicationController
     @item.user = current_user
 
     if @item.save
-      sendEvent("item_created", { item: item_params })
+      sendEvent("item_created", { item: 
+      title: @item.title, 
+      description: @item.description, 
+      image: @item.image, 
+      content: @item.content,
+      isVerified: @item.isVerified || false,
+      tagList: @item.tag_list
+    })
       render :show
     else
       render json: { errors: @item.errors }, status: :unprocessable_entity
@@ -72,6 +79,17 @@ class ItemsController < ApplicationController
 
     if @item.user_id == @current_user_id
       @item.update(item_params)
+
+      sendEvent("item_updated", { 
+        item: { 
+        title: @item.title, 
+        description: @item.description, 
+        image: @item.image, 
+        content: @item.content,
+        isVerified: @item.isVerified || false,
+        tagList: @item.tag_list
+      }
+      })
 
       render :show
     else
@@ -94,6 +112,6 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:title, :description, :image, tag_list: [])
+    params.require(:item).permit(:title, :description, :image, tag_list: [], :isVerified)
   end
 end

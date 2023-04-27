@@ -84,6 +84,18 @@ const SettingsForm = ({ currentUser, onSubmitForm }) => {
           />
         </fieldset>
 
+        <fieldset className="form-group">
+          <label className="form-check">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              checked={user.isVerified}
+              onChange={updateState("isVerified")}
+            />
+            <span className="form-check-label">Verified</span>
+          </label>
+        </fieldset>
+
         <button
           className="btn btn-lg btn-primary pull-xs-right"
           type="submit"
@@ -103,7 +115,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onClickLogout: () => dispatch({ type: LOGOUT }),
   onSubmitForm: (user) =>
-    dispatch({ type: SETTINGS_SAVED, payload: agent.Auth.save(user) }),
+    dispatch({ type: SETTINGS_SAVED, payload: agent.Auth.save({ ...user, isVerified: user.isVerified }) }),
   onUnload: () => dispatch({ type: SETTINGS_PAGE_UNLOADED }),
 });
 

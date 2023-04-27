@@ -14,6 +14,7 @@ import { withRouterParams } from "./commons";
 
 const mapStateToProps = (state) => ({
   ...state.editor,
+  isVerified: state.editor.item ? state.editor.item.isVerified : false
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -24,6 +25,8 @@ const mapDispatchToProps = (dispatch) => ({
   onUnload: (payload) => dispatch({ type: EDITOR_PAGE_UNLOADED }),
   onUpdateField: (key, value) =>
     dispatch({ type: UPDATE_FIELD_EDITOR, key, value }),
+  onUpdateIsVerified: (value) =>
+    dispatch({ type: UPDATE_FIELD_EDITOR, key: "isVerified", value }),
 });
 
 class Editor extends React.Component {
@@ -55,6 +58,7 @@ class Editor extends React.Component {
         description: this.props.description,
         image: this.props.image,
         tagList: this.props.tagList,
+        isVerified: this.props.isVerified,
       };
 
       const slug = { slug: this.props.itemSlug };
@@ -65,6 +69,11 @@ class Editor extends React.Component {
       this.props.onSubmit(promise);
     };
   }
+
+  changeIsVerified = (ev) => {
+    const value = ev.target.checked;
+    this.props.onUpdateIsVerified(value);
+  };
 
   componentDidUpdate(prevProps) {
     if (this.props.params.slug !== prevProps.params.slug) {
@@ -125,6 +134,18 @@ class Editor extends React.Component {
                       value={this.props.image}
                       onChange={this.changeImage}
                     />
+                  </fieldset>
+
+                  <fieldset className="form-group">
+                    <label className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        checked={this.props.isVerified}
+                        onChange={this.changeIsVerified}
+                      />
+                      <span className="form-check-label">Verified</span>
+                    </label>
                   </fieldset>
 
                   <fieldset className="form-group">
