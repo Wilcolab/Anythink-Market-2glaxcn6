@@ -18,8 +18,6 @@ class User < ApplicationRecord
                        presence: true,
                        allow_blank: false
 
-  attribute :isVerified, :boolean, default: false
-
   def generate_jwt
     JWT.encode({ id: id,
                  exp: 60.days.from_now.to_i },
