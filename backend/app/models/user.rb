@@ -3,6 +3,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  attribute :isVerified, :boolean, default: false
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -18,7 +19,7 @@ class User < ApplicationRecord
                        presence: true,
                        allow_blank: false
 
-  attribute :isVerified, :boolean, default: false
+  
 
   def generate_jwt
     JWT.encode({ id: id,
