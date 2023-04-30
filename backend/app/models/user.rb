@@ -19,7 +19,6 @@ class User < ApplicationRecord
                        presence: true,
                        allow_blank: false
 
-  
 
   def generate_jwt
     JWT.encode({ id: id,
