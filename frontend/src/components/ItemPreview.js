@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import agent from "../agent";
 import { connect } from "react-redux";
+// import verifiedIcon from '../public/verified_seller.svg';
 import { ITEM_FAVORITED, ITEM_UNFAVORITED } from "../constants/actionTypes";
 
 const mapDispatchToProps = (dispatch) => ({
@@ -29,6 +30,14 @@ const ItemPreview = (props) => {
     }
   };
 
+  const verifiedSellerIcon = item.seller.isVerified ? (
+    <img src={`${process.env.PUBLIC_URL}/verified_seller.svg`} alt="Verified Seller" className="verified-seller-icon" />
+  ) : null;
+
+  const verifiedSellerText = item.seller.isVerified ? (
+    <span className="top-seller">TOP SELLER</span>
+  ) : null;
+
   return (
     <div
       className="card bg-dark border-light p-3"
@@ -48,6 +57,8 @@ const ItemPreview = (props) => {
         </Link>
         <div className="d-flex flex-row align-items-center pt-2 item-footer">
           <Link to={`/@${item.seller.username}`} className="flex-grow-1">
+            {verifiedSellerIcon}
+            {verifiedSellerText}
             <img
               src={item.seller.image}
               alt={item.seller.username}
