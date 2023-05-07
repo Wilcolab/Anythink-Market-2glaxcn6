@@ -31,7 +31,6 @@ class ItemsController < ApplicationController
             bio: item.user.bio,
             image: item.user.image || 'https://static.productionready.io/images/smiley-cyrus.jpg',
             following: signed_in? ? current_user.following?(item.user) : false,
-            isVerified: item.user.isVerified,
           },
           favorited: signed_in? ? current_user.favorited?(item) : false,
           favoritesCount: item.favorites_count || 0
@@ -94,6 +93,6 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:title, :description, :image, :isVerified, tag_list: [])
+    params.require(:item).permit(:title, :description, :image, tag_list: [])
   end
 end
