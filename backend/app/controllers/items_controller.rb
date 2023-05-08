@@ -23,7 +23,7 @@ class ItemsController < ApplicationController
           title: item.title,
           slug: item.slug,
           description: item.description,
-          image: item.image || asset_path('no-image-found.jpeg'),
+          image: item.image || asset_path('placeholder.png'),
           tagList: item.tags.map(&:name),
           createdAt: item.created_at,
           updatedAt: item.updated_at,
@@ -55,6 +55,10 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     @item.user = current_user
 
+    if @item.image.blank?
+      @item.image = asset_path('placeholder.png')
+    end
+
     if @item.save
       sendEvent("item_created", { item: item_params })
       render :show
@@ -69,6 +73,10 @@ class ItemsController < ApplicationController
 
   def update
     @item = Item.find_by!(slug: params[:slug])
+
+    if @item.image.blank?
+      @item.image = asset_path('placeholder.png')
+    end  
 
     if @item.user_id == @current_user_id
       @item.update(item_params)
