@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 require_relative "../../lib/event"
 include Event
+include ActionView::Helpers::AssetUrlHelper
 
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
@@ -22,7 +23,7 @@ class ItemsController < ApplicationController
           title: item.title,
           slug: item.slug,
           description: item.description,
-          image: item.image,
+          image: item.image || asset_path('no-image-found.jpeg'),
           tagList: item.tags.map(&:name),
           createdAt: item.created_at,
           updatedAt: item.updated_at,
